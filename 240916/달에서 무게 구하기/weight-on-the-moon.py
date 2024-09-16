@@ -1,4 +1,4 @@
 weight = 13
 gravity = 0.165
 
-print("%d * %.6f = %.6f" %(weight, gravity, weight*gravity))
+print(f"{weight} * {gravity:.6f} = {weight*gravity:.6f}")
