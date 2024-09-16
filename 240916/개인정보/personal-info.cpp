@@ -42,6 +42,7 @@ int main() {
 	
 	sort(v.begin(), v.end(), isValueName);
 
+	cout << "name" << "\n";
 	for (int i = 0; i < n; i++) {
 		cout << fixed << setprecision(1);
 		cout << v[i].name << " ";
@@ -51,6 +52,7 @@ int main() {
 
 	sort(v.begin(), v.end(), isValueHeight);
 
+	cout << "\nheight" << "\n";
 	for (int i = 0; i < n; i++) {
 		cout << fixed << setprecision(1);
 		cout << v[i].name << " ";
