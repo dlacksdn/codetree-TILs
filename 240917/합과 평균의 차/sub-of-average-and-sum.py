@@ -4,6 +4,8 @@ a = int(arr[0])
 b = int(arr[1])
 c = int(arr[2])
 
-print(a+b+c)
-print((a+b+c) / 3)
-print((a+b+c) - (int((a+b+c) / 3)))
+sumNum = a+b+c
+aver = int(sumNum / 3)
+print(sumNum)
+print(aver)
+print(sumNum - aver)
