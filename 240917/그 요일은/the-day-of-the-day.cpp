@@ -23,7 +23,7 @@ int main() {
 	}
 	end += d2;
 
-	int num;
+	int num = 0;
 	for (int i = 0; i < 7; i++) {
 		if (day[i] == target) {
 			num = i;
@@ -32,6 +32,10 @@ int main() {
 	}
 
 	int result = end - start - num;
+	if (result < 0) {
+		cout << 0;
+		return 0;
+	}
 	cout << result / 7 + 1;
 
 	
