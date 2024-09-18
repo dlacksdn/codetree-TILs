@@ -36,19 +36,41 @@ int main() {
 		}
 	}
 
+	int result = 0;
+	//for (auto it = m.begin(); it != m.end(); ++it) {
+	//	const auto& pair = *it; // 현재 요소
+
+	//	// 현재 요소의 다음 요소에 접근
+	//	auto next_it = next(it);
+
+	//	// 다음 요소가 존재하는지 확인하고 조건 체크
+	//	if (next_it != m.end()) {
+	//		if (pair.second >= 2 && (*next_it).second >= 2) {
+	//			count++;
+	//		}
+	//	}
+	//	else {
+	//		if (pair.second >= 2) {
+	//			count++;
+	//		}
+	//	}
+	//}
+
 	int count = 0;
-	for (auto it = m.begin(); it != m.end(); ++it) {
-		const auto& pair = *it; // 현재 요소
-
-		// 현재 요소의 다음 요소에 접근
-		auto next_it = next(it);
-
-		// 다음 요소가 존재하는지 확인하고 조건 체크
-		if (next_it != m.end()) {
-			if (pair.second >= 2 && (*next_it).second >= 2) {
-				count++;
-			}
+	bool flag = false;
+	for (auto pair : m) {
+		if (pair.second >= 2) {
+			flag = true;
+			count++;
 		}
+		else if (flag) {
+			count--;
+			flag = false;
+		}
+	}
+
+	if (flag) {
+		count--;
 	}
 
 	cout << count;
