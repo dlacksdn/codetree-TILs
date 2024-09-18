@@ -29,7 +29,7 @@ int main() {
 
 		
 		else if (v[i].second == 'L') {
-			for (int j = 0; j < v[i].first - 1; j++) {
+			for (int j = 0; j < v[i].first; j++) {
 				m[index--]++;
 			}
 			m[index]++;
