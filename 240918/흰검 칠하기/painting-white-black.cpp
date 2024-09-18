@@ -11,8 +11,9 @@ int main() {
 	int n;
 	cin >> n;
 
-	map<int, int> m; // <인덱스, 지나간 횟수>
-	map<int, int> color; // <인덱스, 색깔>
+	map<int, int> color; // <인덱스, 현재 색깔>
+	map<int, int> white; // <인덱스, 흰색 count>
+	map<int, int> black; // <인덱스, 검은색 count>
 	vector<pair<int, char>> v(n); // 이동 거리, 방향
 
 	for (int i = 0; i < n; i++) {
@@ -23,11 +24,11 @@ int main() {
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < v[i].first; j++) {
 			if (v[i].second == 'R') { // 검은색으로
-				if (color[index] != GRAY) {
-					m[index]++;
+				if (color[index] != GRAY) { // gray가 아니라면
 					color[index] = BLACK;
+					black[index]++;
 
-					if (m[index] >= 4) {
+					if (white[index] >= 2 && black[index] >= 2) {
 						color[index] = GRAY;
 					}
 					index++;
@@ -38,10 +39,10 @@ int main() {
 			}
 			else if (v[i].second == 'L') { // 흰색으로
 				if (color[index] != GRAY) {
-					m[index]++;
 					color[index] = WHITE;
+					white[index]++;
 
-					if (m[index] >= 4) {
+					if (white[index] >= 2 && black[index] >= 2) {
 						color[index] = GRAY;
 					}
 					index--;
