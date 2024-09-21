@@ -19,7 +19,6 @@ int main() {
 			count++;
 		}
 		else {
-			maxNum = max(count, maxNum);
 			count = 0;
 		}
 		maxNum = max(count, maxNum);
