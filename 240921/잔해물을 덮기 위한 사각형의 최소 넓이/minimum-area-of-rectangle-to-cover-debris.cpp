@@ -28,6 +28,24 @@ int main() {
 	int xMin = 10000; int xMax = 0;
 	int yMin = 10000; int yMax = 0;
 
+	bool flag = false;
+	for (int i = x1[0]; i <= x2[0]; i++) {
+		for (int j = y1[0]; j <= y2[0]; j++) {
+			if (arr[i][j] == 1) {
+				flag = true;
+				break;
+			}
+		}
+		if (flag) {
+			break;
+		}
+	}
+
+	if (!flag) {
+		cout << 0;
+		return 0;
+	}
+
 	for (int i = x1[0]; i <= x2[0]; i++) {
 		for (int j = y1[0]; j <= y2[0]; j++) {
 			if (arr[i][j] == 1) {
@@ -51,6 +69,7 @@ int main() {
 
 
 }
+
 
 /*
 x가 최소, y가 최대
