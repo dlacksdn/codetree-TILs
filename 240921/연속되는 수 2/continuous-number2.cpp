@@ -22,6 +22,7 @@ int main() {
 		else {
 			count++;
 		}
+		maxNum = max(count, maxNum);
 	}
 
 	cout << maxNum;
