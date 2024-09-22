@@ -42,9 +42,8 @@ int main() {
 	char arr[2] = { 'A', 'B' }; // 현재 인덱스가 선두라는 뜻
 	for (int i = 1; i < A_Location.size(); i++) {
 		if (A_Location[i] != B_Location[i]) {
-			count++;
 			if (i == A_Location.size() - 1) {
-				cout << 1;
+				cout << 0;
 				return 0;
 			}
 
@@ -66,7 +65,7 @@ int main() {
 		}
 		else if (arr[index] == 'B' && A_Location[i] > B_Location[i]) {
 			count++;
-			++index &= 2;
+			++index %= 2;
 		}
 	}
 
