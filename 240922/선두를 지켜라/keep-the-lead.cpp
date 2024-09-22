@@ -43,6 +43,11 @@ int main() {
 	for (int i = 1; i < A_Location.size(); i++) {
 		if (A_Location[i] != B_Location[i]) {
 			count++;
+			if (i == A_Location.size() - 1) {
+				cout << 1;
+				return 0;
+			}
+
 			firstIndex = i + 1;
 			if (A_Location[i] > B_Location[i]) {
 				index = 0;
