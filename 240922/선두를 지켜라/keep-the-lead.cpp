@@ -37,37 +37,26 @@ int main() {
 	}
 
 	int count = 0;
-	int firstIndex = 0;
 	int index = 0;
-	char arr[2] = { 'A', 'B' }; // 현재 인덱스가 선두라는 뜻
 	for (int i = 1; i < A_Location.size(); i++) {
-		if (A_Location[i] != B_Location[i]) {
-			if (i == A_Location.size() - 1) {
-				cout << 0;
-				return 0;
+		if (A_Location[i] > B_Location[i]) {
+			if (index == 2) {
+				count++;
 			}
 
-			firstIndex = i + 1;
-			if (A_Location[i] > B_Location[i]) {
-				index = 0;
-			}
-			else {
-				index = 1;
-			}
-			break;
+			index = 1;
 		}
-	}
+		else if (A_Location[i] < B_Location[i]) {
+			if (index == 1) {
+				count++;
+			}
 
-	for (int i = firstIndex; i < A_Location.size(); i++) {
-		if (arr[index] == 'A' && A_Location[i] < B_Location[i]) {
-			count++;
-			++index %= 2;
+			index = 2;
 		}
-		else if (arr[index] == 'B' && A_Location[i] > B_Location[i]) {
-			count++;
-			++index %= 2;
-		}
+		
 	}
 
 	cout << count;
 }
+
+// 1이면 A, 2이면 B
