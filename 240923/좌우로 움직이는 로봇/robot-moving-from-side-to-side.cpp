@@ -43,7 +43,19 @@ int main() {
 			}
 		}
 	}
-	int rangeMin = 0;
+
+	if (A_Location.size() > B_Location.size()) {
+		for (int i = B_Location.size(); i < A_Location.size(); i++) {
+			B_Location.push_back(B_Location[i - 1]);
+		}
+	}
+	else if (A_Location.size() < B_Location.size()) {
+		for (int i = A_Location.size(); i < B_Location.size(); i++) {
+			A_Location.push_back(A_Location[i - 1]);
+		}
+	}
+
+	/*int rangeMin = 0;
 	int rangeMax = 0;
 	char flag = ' ';
 	if (A_Location.size() > B_Location.size()) {
@@ -55,16 +67,16 @@ int main() {
 		rangeMin = A_Location.size();
 		rangeMax = B_Location.size();
 		flag = 'B';
-	}
+	}*/
 
 	int count = 0;
-	for (int i = 1; i < rangeMin; i++) {
+	for (int i = 1; i < A_Location.size(); i++) {
 		if (A_Location[i - 1] != B_Location[i - 1] && A_Location[i] == B_Location[i]) {
 			count++;
 		}
 	}
 
-	if (flag == 'A') {
+	/*if (flag == 'A') {
 		int num = B_Location[rangeMin - 1];
 		for (int i = rangeMin; i < rangeMax; i++) {
 			if (A_Location[i - 1] != num && A_Location[i] == num) {
@@ -79,7 +91,7 @@ int main() {
 				count++;
 			}
 		}
-	}
+	}*/
 	cout << count;
 
 }
