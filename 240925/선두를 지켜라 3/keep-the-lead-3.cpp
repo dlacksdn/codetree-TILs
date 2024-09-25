@@ -30,25 +30,49 @@ int main() {
 		}
 	}
 
-	vector<char> result;
+	int winner = 3; // A가 앞서면 0, B가 앞서면 1, 똑같으면 2
+	int result = 0;
 	for (int i = 1; i < A_Location.size(); i++) {
 		if (A_Location[i] > B_Location[i]) {
-			result.push_back('A');
+			if (winner != 0) {
+				result++;
+			}
+			winner = 0;
 		}
 		else if (A_Location[i] < B_Location[i]) {
-			result.push_back('B');
+			if (winner != 1) {
+				result++;
+			}
+			winner = 1;
 		}
 		else {
-			result.push_back('C');
+			if (winner != 2) {
+				result++;
+			}
+			winner = 2;
 		}
 	}
+	cout << result;
 
-	int count = 0;
-	for (int i = 0; i < result.size(); i++) {
-		if (i == 0 || result[i] != result[i - 1]) {
-			count++;
-		}
-	}
+	//vector<char> result;
+	//for (int i = 1; i < A_Location.size(); i++) {
+	//	if (A_Location[i] > B_Location[i]) {
+	//		result.push_back('A');
+	//	}
+	//	else if (A_Location[i] < B_Location[i]) {
+	//		result.push_back('B');
+	//	}
+	//	else {
+	//		result.push_back('C');
+	//	}
+	//}
 
-	cout << count;
+	//int count = 0;
+	//for (int i = 0; i < result.size(); i++) {
+	//	if (i == 0 || result[i] != result[i - 1]) {
+	//		count++;
+	//	}
+	//}
+
+	
 }
