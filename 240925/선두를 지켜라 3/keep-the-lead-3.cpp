@@ -53,26 +53,4 @@ int main() {
 		}
 	}
 	cout << result;
-
-	//vector<char> result;
-	//for (int i = 1; i < A_Location.size(); i++) {
-	//	if (A_Location[i] > B_Location[i]) {
-	//		result.push_back('A');
-	//	}
-	//	else if (A_Location[i] < B_Location[i]) {
-	//		result.push_back('B');
-	//	}
-	//	else {
-	//		result.push_back('C');
-	//	}
-	//}
-
-	//int count = 0;
-	//for (int i = 0; i < result.size(); i++) {
-	//	if (i == 0 || result[i] != result[i - 1]) {
-	//		count++;
-	//	}
-	//}
-
-	
 }
