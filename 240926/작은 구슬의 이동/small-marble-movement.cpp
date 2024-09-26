@@ -25,7 +25,7 @@ int main() {
 	int n, t;
 	cin >> n >> t;
 
-	vector<vector<int>> v(n + 1, vector<int>(n + 1, 0));
+//	vector<vector<int>> v(n + 1, vector<int>(n + 1, 0));
 
 	int x_dir[4] = { 0, 1, 0, -1 };
 	int y_dir[4] = { 1, 0, -1, 0 };
