@@ -11,30 +11,25 @@ int main() {
 
 	int x = 0, y = 0;
 	while (N--) {
-		char direction;
-		int distance;
+		char direction; int distance;
+		int dir;
 		cin >> direction >> distance;
 
 		if (direction == 'E') {
-			for (int i = 0; i < distance; i++) {
-				x += dx[0]; y += dy[0];
-			}
+			dir = 0;
 		}
 		else if (direction == 'W') {
-			for (int i = 0; i < distance; i++) {
-				x += dx[1]; y += dy[1];
-			}
+			dir = 1;
 		}
 		else if (direction == 'S') {
-			for (int i = 0; i < distance; i++) {
-				x += dx[2]; y += dy[2];
-			}
+			dir = 2;
 		}
 		else if (direction == 'N') {
-			for (int i = 0; i < distance; i++) {
-				x += dx[3]; y += dy[3];
-			}
+			dir = 3;
 		}
+
+		x += dx[dir] * distance;
+		y += dy[dir] * distance;
 	}
 
 	cout << x << " " << y;
