@@ -45,10 +45,8 @@ int main() {
 		
 	}
 	
-	if (is_arrive) {
+	if (is_arrive) 
 		cout << count;
-	}
-	else {
+	else 
 		cout << -1;
-	}
 }
