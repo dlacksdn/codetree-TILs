@@ -13,59 +13,29 @@ int main() {
 	int count = 0;
 	bool flag = false;
 	bool is_arrive = false;
+	int dir = 0;
 	while (N--) {
 		cin >> direction >> distance;
 
-		if (direction == 'E') {
-			for (int i = 0; i < distance; i++) {
-				x += x_dir[0];
-				y += y_dir[0];
-				count++;
+		if (direction == 'E') 
+			dir = 0;
+		else if (direction == 'W') 
+			dir = 1;
+		else if (direction == 'S') 
+			dir = 2;
+		else if (direction == 'N') 
+			dir = 3;
 
-				if (x == 0 && y == 0) {
-					flag = true;
-					is_arrive = true;
-					break;
-				}
-			}
-		}
-		else if (direction == 'W') {
-			for (int i = 0; i < distance; i++) {
-				x += x_dir[1];
-				y += y_dir[1];
-				count++;
 
-				if (x == 0 && y == 0) {
-					flag = true;
-					is_arrive = true;
-					break;
-				}
-			}
-		}
-		else if (direction == 'S') {
-			for (int i = 0; i < distance; i++) {
-				x += x_dir[2];
-				y += y_dir[2];
-				count++;
+		for (int i = 0; i < distance; i++) {
+			x += x_dir[dir];
+			y += y_dir[dir];
+			count++;
 
-				if (x == 0 && y == 0) {
-					flag = true;
-					is_arrive = true;
-					break;
-				}
-			}
-		}
-		else if (direction == 'N') {
-			for (int i = 0; i < distance; i++) {
-				x += x_dir[3];
-				y += y_dir[3];
-				count++;
-
-				if (x == 0 && y == 0) {
-					flag = true;
-					is_arrive = true;
-					break;
-				}
+			if (x == 0 && y == 0) {
+				flag = true;
+				is_arrive = true;
+				break;
 			}
 		}
 
