@@ -12,6 +12,7 @@ int main() {
 	int x = 0, y = 0;
 	int count = 0;
 	bool flag = false;
+	bool is_arrive = false;
 	while (N--) {
 		cin >> direction >> distance;
 
@@ -23,6 +24,7 @@ int main() {
 
 				if (x == 0 && y == 0) {
 					flag = true;
+					is_arrive = true;
 					break;
 				}
 			}
@@ -35,6 +37,7 @@ int main() {
 
 				if (x == 0 && y == 0) {
 					flag = true;
+					is_arrive = true;
 					break;
 				}
 			}
@@ -47,6 +50,7 @@ int main() {
 
 				if (x == 0 && y == 0) {
 					flag = true;
+					is_arrive = true;
 					break;
 				}
 			}
@@ -59,6 +63,7 @@ int main() {
 
 				if (x == 0 && y == 0) {
 					flag = true;
+					is_arrive = true;
 					break;
 				}
 			}
@@ -69,8 +74,8 @@ int main() {
 		}
 		
 	}
-
-	if (count != 0) {
+	
+	if (is_arrive) {
 		cout << count;
 	}
 	else {
