@@ -33,6 +33,6 @@ int main() {
 		if (count == 3) {
 			cout << 1 << "\n";
 		}
-		else cout << 0;
+		else cout << 0 << "\n";
 	}
 }
