@@ -2,6 +2,10 @@
 #include <vector>
 using namespace std;
 
+bool is_range(int x, int y, int N) {
+	return 1 <= x && x <= N && 1 <= y && y <= N;
+}
+
 int main() {
 	int N, M;
 	cin >> N >> M;
@@ -21,7 +25,7 @@ int main() {
 			int nx = r + x_dir[i];
 			int ny = c + y_dir[i];
 
-			if (v[nx][ny] == 1) {
+			if (is_range(nx, ny, N) && v[nx][ny] == 1) {
 				count++;
 			}
 		}
