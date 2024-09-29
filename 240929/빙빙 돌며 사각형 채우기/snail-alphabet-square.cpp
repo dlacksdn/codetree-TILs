@@ -20,7 +20,7 @@ int main() {
 
 	int value;
 	for (int i = 0; i < n * m; i++) {
-		value = (i % 26) + 65;
+		value = (i % 26) + 'A';
 		v[x][y] = value;
 
 
@@ -47,8 +47,3 @@ int main() {
 		cout << "\n";
 	}
 }
-
-/*
-65 ~ 90
-0 ~ 25 한 다음에 + 65하면 됨
-*/
