@@ -2,6 +2,7 @@
 #include <vector>
 #include <cmath>
 #include <climits>
+#include <algorithm>
 using namespace std;
 
 int main() {
@@ -18,13 +19,10 @@ int main() {
 		int sum = 0;
 
 		for (int j = 1; j <= n; j++) { // 어디 집을 보고 있는가
-			int distance = abs(j - i);
-			sum += distance * v[j];
+			sum += abs(j - i) * v[j];
 		}
 
-		if (sum < result) {
-			result = sum;
-		}
+		result = min(result, sum);
 	}
 
 	cout << result;
