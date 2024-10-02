@@ -16,7 +16,7 @@ int main() {
 
 	int state = (v[1][1] == 'W' ? 0 : 1); // 처음이 W면 0 / B면 1
 
-	if ((state == 0 && v[R][C] == 'W') || (state == 1 && v[R][C] == 'B') {
+	if ((state == 0 && v[R][C] == 'W') || (state == 1 && v[R][C] == 'B')) {
 		cout << 0;
 		return 0;
 	}
