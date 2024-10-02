@@ -16,6 +16,11 @@ int main() {
 
 	int state = (v[1][1] == 'W' ? 0 : 1); // 처음이 W면 0 / B면 1
 
+	if ((state == 0 && v[R][C] == 'W') || (state == 1 && v[R][C] == 'B') {
+		cout << 0;
+		return 0;
+	}
+
 	int count = 0;
 	for (int i = 2; i < R - 1; i++) { // 1행 1열은 어차피 못쓰니 2부터 시작
 		for (int j = 2; j < C - 1; j++) { 
