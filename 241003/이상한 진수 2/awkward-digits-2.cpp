@@ -15,7 +15,7 @@ int main() {
 			sum = sum * 2 + num;
 		}
 		result = max(result, sum);
-		str[i] = str[i] == '0' ? 1 : 0;
+		str[i] = str[i] == '0' ? '1' : '0';
 	}
 
 	cout << result;
