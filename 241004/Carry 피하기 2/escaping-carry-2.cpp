@@ -28,7 +28,7 @@ int main() {
 					num2 /= 10;
 					num3 /= 10;
 
-					if (num1 == 0 || num2 == 0 || num3 == 0) {
+					if (num1 == 0 && num2 == 0 && num3 == 0) {
 						result = max(result, v[i] + v[j] + v[k]);
 						break;
 					}
