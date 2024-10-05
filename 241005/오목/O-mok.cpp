@@ -38,7 +38,7 @@ int main() {
 			if (v[i][j] != 0) {
 				for (int k = 0; k < 8; k++) {
 					int x_loc = i + x_dir[k];
-					int y_loc = +y_dir[k];
+					int y_loc = j + y_dir[k];
 					if (in_range(x_loc, y_loc) && v[i + x_dir[k]][j + y_dir[k]] == v[i][j]) {
 						if (check_win(v, i, j, x_dir[k], y_dir[k], v[i][j])) {
 							cout << v[i][j] << "\n";
