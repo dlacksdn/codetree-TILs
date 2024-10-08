@@ -23,16 +23,31 @@ int main() {
 	int count = 0;
 	for (int i = 0; i < N; i++) {
 		for (int j = 0; j < M; j++) {
-			if (v[i][j] == 'L') {
-				for (int k = 0; k < 8; k++) {
-					int dx = i + x_dir[k];
-					int dy = j + y_dir[k];
+			if (v[i][j] != 'L') {
+				continue;
+			}
 
-					if (in_range(dx, dy, N, M) && v[dx][dy] == 'E' &&
-						in_range(dx + x_dir[k], dy + y_dir[k], N, M) && v[dx + x_dir[k]][dy + y_dir[k]] == 'E') {
-						count++;
-					}
+			for (int k = 0; k < 8; k++) {
+				int cnt = 1;
+				int x_Lo = i;
+				int y_Lo = j;
+
+				while (true) {
+					int dx = x_Lo + x_dir[k];
+					int dy = y_Lo + y_dir[k];
+
+					if (!in_range(dx, dy, N, M))
+						break;
+					if (v[dx][dy] != 'E')
+						break;
+
+					x_Lo = dx;
+					y_Lo = dy;
+					cnt++;
 				}
+
+				if (cnt >= 3)
+					count++;
 			}
 		}
 	}
