@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <climits>
 using namespace std;
 
 int main() {
@@ -14,7 +15,7 @@ int main() {
 	}
 
 	int sum = 0;
-	int result = 100;
+	int result = INT_MAX;
 	for (int i = 0; i < N; i++) {
 		for (int j = i + 1; j < N; j++) {
 			for (int k = 0; k < N; k++) {
