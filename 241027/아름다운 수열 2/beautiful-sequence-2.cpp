@@ -20,14 +20,14 @@ int main() {
 	sort(B.begin(), B.end());
 
 	int count = 0;
-	for (int i = 0; i < N - M + 1; i++) { // i : 시작 인덱스
-		vector<int> temp(A.begin() + i, A.begin() + i + M); // A를 시작과 끝으로 짜른 새로운 배열
-		sort(temp.begin(), temp.end());
+	for (int i = 0; i < N - M + 1; i++) { // 시작 인덱스에서 M개를 봐야하니 i의 범위를 저렇게 산정
+		vector<int> temp(A.begin() + i, A.begin() + i + M); // B와의 비교를 위해 A를 시작인덱스에서 M개를 짜름
+		sort(temp.begin(), temp.end()); // 짤라서 만든 새로운 배열을 정렬해서 B와 비교하기 용이하게 세팅
 
 		bool flag = true;
 
 		for (int j = 0; j < M; j++) {
-			if (B[j] != temp[j]) {
+			if (B[j] != temp[j]) { // 하나라도 틀리면 다음은 볼 필요도 없음
 				flag = false;
 				break;
 			}
@@ -38,10 +38,3 @@ int main() {
 
 	cout << count << "\n";
 }
-
-/*
-vector를 하나 또 만들어서 수열 B의 값이 있으면 그걸 저장하는 배열로 쓰는거지
-왜냐면 요소가 같은 게 있을 수도 있으니까 인덱스가 겹치면 그냥 넘어가는거지
-
-그냥 정렬시키면 되는것 아닌가?
-*/
