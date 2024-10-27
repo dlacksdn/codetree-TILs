@@ -7,15 +7,14 @@ int main() {
 	int N, K;
 	cin >> N >> K;
 
-	vector<pair<int, char>> v(10001, {0, ' '});
+	vector<int> v(10001, 0);
 
 	for (int i = 1; i <= N; i++) {
-		int loc;
-		char c;
+		int loc; char c;
 		cin >> loc >> c;
 
-		v[loc].first = loc;
-		v[loc].second = c;
+		int value = (c == 'G' ? 1 : 2);
+		v[loc] = value;
 	}
 
 	int maxNum = 0;
@@ -24,9 +23,7 @@ int main() {
 		for (int j = i; j <= i + K; j++) {
 			if (j > 10000) break;
 
-			if (v[j].first != 0) {
-				v[j].second == 'G' ? sum += 1 : sum += 2;
-			}
+			sum += v[j];
 		}
 		maxNum = max(maxNum, sum);
 		
