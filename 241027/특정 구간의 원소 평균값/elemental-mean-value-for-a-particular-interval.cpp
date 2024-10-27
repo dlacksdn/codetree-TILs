@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 using namespace std;
 
 int main() {
@@ -24,12 +25,8 @@ int main() {
 
 			avg = (double)(sum) / (j - i + 1);
 
-			for (int k = i; k <= j; k++) {
-				if (v[k] == avg) {
-					count++;
-					break;
-				}
-			}
+			auto it = find(v.begin(), v.end(), avg);
+			if (it != v.end()) count++;
 		}
 	}
 
