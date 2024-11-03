@@ -3,13 +3,6 @@
 #include <algorithm>
 using namespace std;
 
-bool process(pair<int, int> left, pair<int, int> right) {
-	if (left.second == right.second) {
-		return left.first < right.first;
-	}
-	else return left.second < right.second;
-}
-
 int main() {
 	int n;
 	cin >> n;
@@ -22,17 +15,33 @@ int main() {
 		cin >> v[i].first >> v[i].second;
 	}
 
-	sort(v.begin(), v.end(), process);
-
+	int num1 = 0;
+	int num2 = 0;
 	for (int i = 0; i < n; i++) {
 		for (int j = i + 1; j < n; j++) {
-			if (v[i].second != v[j].second) continue;
 			for (int k = j + 1; k < n; k++) {
-				if (v[j].first != v[k].first) continue;
 
-				int num1 = v[j].first - v[i].first;
-				int num2 = v[k].second - v[j].second;
-				result.push_back(num1 * num2);
+				if (v[i].second == v[j].second) {
+					if (v[i].first == v[k].first || v[j].first == v[k].first) {
+						num1 = abs(v[j].first - v[i].first);
+						num2 = abs(v[k].second - v[j].second);
+						result.push_back(num1 * num2);
+					}
+				}
+				else if (v[i].second == v[k].second) {
+					if (v[i].first == v[j].first || v[j].first == v[k].first) {
+						num1 = abs(v[k].first - v[i].first);
+						num2 = abs(v[j].second - v[k].second);
+						result.push_back(num1 * num2);
+					}
+				}
+				else if (v[j].second == v[k].second) {
+					if (v[i].first == v[j].first || v[i].first == v[k].first) {
+						num1 = abs(v[k].first - v[j].first);
+						num2 = abs(v[i].second - v[k].second);
+						result.push_back(num1 * num2);
+					}
+				}
 			}
 		}
 	}
