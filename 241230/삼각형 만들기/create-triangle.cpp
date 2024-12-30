@@ -23,7 +23,7 @@ int main() {
 				int num1 = (v[i].first * v[j].second) + (v[j].first * v[k].second) + (v[k].first * v[i].second);
 				int num2 = (v[j].first * v[i].second) + (v[k].first * v[j].second) + (v[i].first * v[k].second);
 
-				result = max(result, num1 - num2);
+				result = max(result, abs(num1 - num2));
 			}
 		}
 	}
