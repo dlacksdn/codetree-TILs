@@ -5,12 +5,13 @@ using namespace std;
 
 class Person {
 public:
-	Person(int person_, int cheese_, int time_)
-	: person(person_), cheese(cheese_), time(time_) {}
+	Person(int person_, int cheese_, int time_, bool drug_ = false)
+	: person(person_), cheese(cheese_), time(time_), drug(drug_) {}
 
 	int person;
 	int cheese;
 	int time;
+	bool drug;
 };
 
 struct process {
@@ -117,6 +118,7 @@ int main() {
 
 	int count = 0;
 	int result = 0;
+	vector<bool> drugV(N, false);
 
 	for (int i = 1; i <= cheese; i++) {
 		chState[i] = chState1[i] || chState2[i];
@@ -128,20 +130,20 @@ int main() {
 		}
 
 		for (int j = 0; j < eat; j++) {
-			if (j != 0) {
-				if (per[j].cheese == i && per[j].person != per[j - 1].person) {
-					count++;
-				}
+			if (per[j].cheese == i) {
+				drugV[per[j].person] = true;
 			}
-			else {
-				if (per[j].cheese == i) {
-					count++;
-				}
+		}
+
+		for (int j = 0; j < N; j++) {
+			if (drugV[j] == true) {
+				count++;
 			}
 		}
 
 		result = max(result, count);
 		count = 0;
+		drugV.clear();
 	}
 
 	cout << result;
@@ -163,20 +165,17 @@ int main() {
 
 상한 치즈가 아닌 리스트를 모은 다음 그거 제외하고 치즈 완전탐색해서 아프기 전에 먹은 사람수 count 한다 
 
-3 4 7 2
-1 1 1
-1 1 3
-1 3 4
-1 2 2
-3 1 3
-2 1 5
-2 2 7
-1 3
-2 8
+4 4 4 1
+2 1 10
+1 3 10
+2 3 3
+1 2 5
+2 10
 
-1번 사람 1 2
-2번 사람 1 2
-3번 사람 1
+1번 사람 3
+2번 사람 
+3번 사람 
+4번 사람
 
 */
 
