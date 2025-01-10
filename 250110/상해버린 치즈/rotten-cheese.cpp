@@ -118,7 +118,7 @@ int main() {
 
 	int count = 0;
 	int result = 0;
-	vector<bool> drugV(N, false);
+	vector<bool> drugV(N + 1, false);
 
 	for (int i = 1; i <= cheese; i++) {
 		chState[i] = chState1[i] || chState2[i];
@@ -135,7 +135,7 @@ int main() {
 			}
 		}
 
-		for (int j = 0; j < N; j++) {
+		for (int j = 1; j <= N; j++) {
 			if (drugV[j] == true) {
 				count++;
 			}
@@ -143,7 +143,7 @@ int main() {
 
 		result = max(result, count);
 		count = 0;
-		drugV.clear();
+		fill(drugV.begin(), drugV.end(), false);
 	}
 
 	cout << result;
