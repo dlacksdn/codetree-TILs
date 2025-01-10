@@ -119,7 +119,7 @@ int main() {
 	int result = 0;
 
 	for (int i = 1; i <= cheese; i++) {
-		chState[i] = chState1[i] && chState2[i];
+		chState[i] = chState1[i] || chState2[i];
 	}
 
 	for (int i = 1; i <= cheese; i++) { // 최대값 찾기
@@ -128,8 +128,15 @@ int main() {
 		}
 
 		for (int j = 0; j < eat; j++) {
-			if (per[j].cheese == i) {
-				count++;
+			if (j != 0) {
+				if (per[j].cheese == i && per[j].person != per[j - 1].person) {
+					count++;
+				}
+			}
+			else {
+				if (per[j].cheese == i) {
+					count++;
+				}
 			}
 		}
 
@@ -155,5 +162,21 @@ int main() {
 상한 치즈는 단 1개라는 사실에 주목해야 한다
 
 상한 치즈가 아닌 리스트를 모은 다음 그거 제외하고 치즈 완전탐색해서 아프기 전에 먹은 사람수 count 한다 
+
+3 4 7 2
+1 1 1
+1 1 3
+1 3 4
+1 2 2
+3 1 3
+2 1 5
+2 2 7
+1 3
+2 8
+
+1번 사람 1 2
+2번 사람 1 2
+3번 사람 1
+
 */
 
