@@ -6,11 +6,19 @@ int main() {
 	int K, N;
 	cin >> K >> N;
 
-	vector<vector<int>> v(K, vector<int>(N));
+	vector<vector<int>> v(K, vector<int>(N + 1));
 
 	for (int i = 0; i < K; i++) {
-		for (int j = 0; j < N; j++) {
+		for (int j = 1; j <= N; j++) {
 			cin >> v[i][j];
+		}
+	}
+
+	vector<vector<int>> pos(K, vector<int>(N + 1));
+
+	for (int i = 0; i < K; i++) {
+		for (int j = 1; j <= N; j++) {
+			pos[i][v[i][j]] = j;
 		}
 	}
 
@@ -18,19 +26,10 @@ int main() {
 	for (int i = 1; i <= N; i++) {
 		for (int j = 1; j <= N; j++) {
 			if (i == j) continue;
-			bool flag = true;
 
+			bool flag = true;
 			for (int k = 0; k < K; k++) {
-				int num1, num2;
-				for (int l = 0; l < N; l++) {
-					if (v[k][l] == i) {
-						num1 = l;
-					}
-					if (v[k][l] == j) {
-						num2 = l;
-					}
-				}
-				if (num1 > num2) {
+				if (pos[k][i] > pos[k][j]) {
 					flag = false;
 					break;
 				}
