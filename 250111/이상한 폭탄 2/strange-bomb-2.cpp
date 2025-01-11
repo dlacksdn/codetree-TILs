@@ -18,7 +18,7 @@ int main() {
 		v[list[i]].push_back(i);
 	}
 
-	int result = 0;
+	int result = -1;
 	for (int i = 0; i <= 1000; i++) {
 		if (v[i].size() >= 2) {
 			bool flag = false;
