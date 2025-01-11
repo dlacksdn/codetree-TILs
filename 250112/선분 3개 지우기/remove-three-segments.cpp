@@ -2,69 +2,60 @@
 #include <vector>
 using namespace std;
 
-const int MAX_POS = 100;
-
 int main() {
-    int n, k;
-    cin >> n >> k;
+	int n;
+	cin >> n;
 
-    vector<pair<int, int>> segments(n);
-    vector<vector<int>> coverage(n, vector<int>());
-    vector<int> totalCoverage(MAX_POS + 1, 0);
+	vector<pair<int, int>> v(n);
+	vector<int> list(101, 0);
 
-    // 입력 및 커버리지 저장
-    for (int i = 0; i < n; i++) {
-        cin >> segments[i].first >> segments[i].second;
-        for (int pos = segments[i].first; pos <= segments[i].second; pos++) {
-            coverage[i].push_back(pos);
-            totalCoverage[pos]++;
-        }
-    }
+	for (int i = 0; i < n; i++) {
+		int a, b;
+		cin >> a >> b;
+		v[i] = { a, b };
+	}
 
-    int validCombinations = 0;
+	for (int i = 0; i < n; i++) {
+		for (int j = v[i].first; j <= v[i].second; j++) {
+			list[j]++;
+		}
+	}
 
-    // 모든 3개 선분 조합 검사
-    for (int seg1 = 0; seg1 < n; seg1++) {
-        for (int seg2 = seg1 + 1; seg2 < n; seg2++) {
-            for (int seg3 = seg2 + 1; seg3 < n; seg3++) {
-                bool isValid = true;
+	vector<int> base = list;
 
-                // 선분 seg1, seg2, seg3 제거
-                for (auto pos : coverage[seg1]) {
-                    if (--totalCoverage[pos] >= 2) {
-                        isValid = false;
-                        break;
-                    }
-                }
-                if (isValid) {
-                    for (auto pos : coverage[seg2]) {
-                        if (--totalCoverage[pos] >= 2) {
-                            isValid = false;
-                            break;
-                        }
-                    }
-                }
-                if (isValid) {
-                    for (auto pos : coverage[seg3]) {
-                        if (--totalCoverage[pos] >= 2) {
-                            isValid = false;
-                            break;
-                        }
-                    }
-                }
+	int count = 0;
+	for (int i = 0; i < n; i++) {
+		for (int j = i + 1; j < n; j++) {
+			for (int k = j + 1; k < n; k++) {
+				base = list;
 
-                // 카운트 복구
-                for (auto pos : coverage[seg1]) totalCoverage[pos]++;
-                for (auto pos : coverage[seg2]) totalCoverage[pos]++;
-                for (auto pos : coverage[seg3]) totalCoverage[pos]++;
+				for (int r = v[i].first; r <= v[i].second; r++) {
+					base[r]--;
+				}
 
-                // 유효한 조합인 경우
-                if (isValid) validCombinations++;
-            }
-        }
-    }
+				for (int r = v[j].first; r <= v[j].second; r++) {
+					base[r]--;
+				}
 
-    cout << validCombinations;
+				for (int r = v[k].first; r <= v[k].second; r++) {
+					base[r]--;
+				}
 
-    return 0;
+				bool flag = true;
+				for (auto& num : base) {
+					if (num >= 2) {
+						flag = false;
+						break;
+					}
+				}
+
+				if (flag) {
+					count++;
+				}
+			}
+		}
+	}
+
+	cout << count;
 }
+
