@@ -19,16 +19,18 @@ int main() {
 		cin >> v[i].first >> v[i].second;
 	}
 
-	sort(v.begin(), v.end(), process());
-
 	int result = 0;
 	for (int i = 0; i < N; i++) {
-		v[i].first /= 2;
+		vector<pair<int, int>> test = v;
+		test[i].first /= 2;
+
+		sort(test.begin(), test.end(), process());
+
 		int sum = 0;
 		int count = 0;
 
 		for (int j = 0; j < N; j++) {
-			sum += v[j].first + v[j].second;
+			sum += test[j].first + test[j].second;
 			count++;
 
 			if (sum > B) {
@@ -38,7 +40,6 @@ int main() {
 		}
 
 		result = max(result, count);
-		v[i].first *= 2;
 	}
 
 	cout << result;
