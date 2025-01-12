@@ -6,8 +6,6 @@ int main() {
 	int a, b;
 	cin >> a >> b;
 
-	vector<int> v;
-
 	int count = 0;
 	for (int i = a; i <= b; i++) {
 		int arr[10] = { 0, };
@@ -30,7 +28,6 @@ int main() {
 
 		if (flag) {
 			count++;
-			v.push_back(i);
 		}
 	}
 
