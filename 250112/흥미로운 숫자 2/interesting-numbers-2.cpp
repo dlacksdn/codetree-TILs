@@ -1,50 +1,38 @@
 #include <iostream>
-#include <string>
+#include <vector>
 using namespace std;
 
 int main() {
 	int a, b;
 	cin >> a >> b;
 
+	vector<int> v;
+
 	int count = 0;
 	for (int i = a; i <= b; i++) {
-		string str = to_string(i);
+		int arr[10] = { 0, };
+		int num = i;
+		int total_num = 0;
 
-		if (str[0] == str[str.size() - 1]) {
-			int c = 0;
-			for (int j = 0; j < str.size(); j++) {
-				if (str[0] != str[j]) c++;
-			}
-			if (c == 1) count++;
+		while (num != 0) {
+			arr[num % 10]++;
+			total_num++;
+			num /= 10;
 		}
-		else if (str[0] == str[1]) {
-			int c = 0;
-			for (int j = 0; j < str.size(); j++) {
-				if (str[0] != str[j]) c++;
-			}
-			if (c == 1) count++;
 
-		}
-		else if (str[1] == str[str.size() - 1]) {
-			int c = 0;
-			for (int j = 0; j < str.size(); j++) {
-				if (str[1] != str[j]) c++;
+		bool flag = false;
+		for (int j = 0; j <= 9; j++) {
+			if (arr[j] == total_num - 1) {
+				flag = true;
+				break;
 			}
-			if (c == 1) count++;
+		}
+
+		if (flag) {
+			count++;
+			v.push_back(i);
 		}
 	}
 
 	cout << count;
 }
-
-/*
-
-if(첫 번째 == 마지막)
-	-> 숫자 쭉 돌면서 첫 번째랑 다른게 하나 있으면 count
-else if(첫 번째 == 두 번째)
-	-> 숫자 쭉 돌면서 첫 번째랑 다른게 하나 있으면 count
-else if(두 번째 == 마지막)
-	-> 숫자 쭉 돌면서 두 번째랑 다른게 하나 있으면 count
-
--> 세 개 다 아니면 될 수가 없음
-*/
