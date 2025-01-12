@@ -10,16 +10,12 @@ int main() {
 
 	vector<pair<int, int>> v(N);
 	int TaMin = 1000;
-	int TaMax = 0;
-	int TbMin = 1000;
 	int TbMax = 0;
 
 	for (auto& p : v) {
 		cin >> p.first >> p.second;
 
 		if (p.first < TaMin) TaMin = p.first;
-		if (p.first > TaMax) TaMax = p.first;
-		if (p.second < TbMin) TbMin = p.second;
 		if (p.second > TbMax) TbMax = p.second;
 	}
 
