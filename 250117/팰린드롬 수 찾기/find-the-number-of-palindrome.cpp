@@ -11,8 +11,8 @@ int main() {
 		string str = to_string(i);
 
 		bool flag = true;
-		for (int i = 0; i < (int)(str.size() / 2); i++) {
-			if (str[i] != str[str.size() - i - 1]) {
+		for (int j = 0; j < (int)(str.size() / 2); j++) {
+			if (str[j] != str[str.size() - j - 1]) {
 				flag = false;
 				break;
 			}
