@@ -19,7 +19,7 @@ int main() {
 		auto it_x = find(x_arr.begin(), x_arr.end(), x);
 		auto it_y = find(y_arr.begin(), y_arr.end(), y);
 
-		if (it_x != x_arr.end() && it_y != y_arr.end()) {
+		if (it_x == x_arr.end() && it_y == y_arr.end()) {
 			x_arr.push_back(x);
 			y_arr.push_back(y);
 		}
