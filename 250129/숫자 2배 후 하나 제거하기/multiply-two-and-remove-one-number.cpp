@@ -15,27 +15,26 @@ int main() {
 	}
 
 	int result = INT_MAX;
-	vector<int> arr;
-
+	
 	for (int i = 0; i < n; i++) { // 2배 인덱스
 		v[i] *= 2;
 		
 		for (int j = 0; j < n; j++) { // 제거 인덱스
 			int count = 0;
+			int prev = -1;
 
 			for (int k = 0; k < n; k++) {
 				if (k == j) {
 					continue;
 				}
-				arr.push_back(v[k]);
-			}
+				
+				if (prev != -1) {
+					count += abs(v[k] - prev);
+				}
 
-			for (int k = 0; k < n - 2; k++) {
-				count += abs(arr[k + 1] - arr[k]);
+				prev = v[i];
 			}
-
 			result = min(result, count);
-			arr.clear();
 		}
 
 		v[i] /= 2;
