@@ -25,5 +25,5 @@ int main() {
 		}
 	}
 
-	cout << (x_arr.size() <= 3) ? 1 : 0;
+	cout << (x_arr.size() <= 3);
 }
