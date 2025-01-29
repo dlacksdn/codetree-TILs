@@ -32,7 +32,7 @@ int main() {
 					count += abs(v[k] - prev);
 				}
 
-				prev = v[i];
+				prev = v[k];
 			}
 			result = min(result, count);
 		}
