@@ -30,13 +30,15 @@ int main() {
 					}
 				}
 
-				int distance = 101;
+				int distance = 200;
 				for (int k = 1; k < count; k++) {
 					int num = v[k] - v[k - 1];
 					distance = min(distance, num);
 				}
 
-				result = max(result, distance);
+				if (distance != 200) {
+					result = max(result, distance);
+				}
 			}
 		}
 	}
