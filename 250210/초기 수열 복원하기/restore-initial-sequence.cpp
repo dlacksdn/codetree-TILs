@@ -17,6 +17,11 @@ int main() {
 
     for (int i = pow(10, n - 1); i < pow(10, n); i++) {
         string str = to_string(i);
+
+        if (find(str.begin(), str.end(), '0') != str.end()) { // true이면 0이 존재한다
+            continue;
+        }
+
         unordered_set<char> s(str.begin(), str.end());
 
         if (str.size() == s.size()) { // true면 중복이 없는 것
