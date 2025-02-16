@@ -1,18 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <unordered_map>
-#include <algorithm>
 using namespace std;
-
-struct Process {
-    bool operator() (pair<int, int> left, pair<int, int> right) {
-        if (left.second != right.second) {
-            return left.second >= right.second;
-        }
-        
-        return left.first >= right.first;
-    }
-};
 
 int main() {
     int N, K;
@@ -40,14 +29,22 @@ int main() {
             }
         }
     }
-
-    vector<pair<int, int>> result(m.begin(), m.end());
-    if (result.size() == 0) {
+   
+    if (m.size() == 0) {
         cout << 0;
     }
     else {
-        sort(result.begin(), result.end(), Process());
-        cout << result[0].first;
+        int max = 0;
+        int result = 0;
+
+        for (auto it = m.begin(); it != m.end(); it++) {
+            if (max < it->second) {
+                max = it->second;
+                result = it->first;
+            }
+        }
+
+        cout << result;
     }
 
 }
