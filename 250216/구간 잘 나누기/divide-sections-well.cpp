@@ -35,6 +35,10 @@ int main() {
                 index++;
                 max_num = max(max_num, sum);
                 sum = 0;
+
+                if (max_num >= result) { // 최대값이 갱신되는 경우는 더 큰 값이 나오는 경우 뿐이다. 즉, 더 작아질 일이 없다. 이 문제는 최소값을 요구하기 때문에 최대값이 이미 결과값보다 크다면 정답이 아니다
+                    break;
+                }
             }
         }
 
