@@ -3,56 +3,58 @@
 #include <algorithm>
 using namespace std;
 
-int n, m;
-vector<int> arr;
-vector<long long> prefix;  // 누적합 배열
-int best = 1e9;          // 최적해 (최대 구간 합의 최소값)
-
-void computePrefix() {
-    prefix.resize(n + 1, 0);
-    for (int i = 0; i < n; i++) {
-        prefix[i + 1] = prefix[i] + arr[i];
-    }
-}
-
-// parts에는 분할 경계(칸막이)의 인덱스가 저장된다. (m 구간이면 m-1개 선택)
-void backtrack(vector<int>& parts, int start) {
-    if (parts.size() == m - 1) {  // 모든 분할점을 선택했다면
-        int currentMax = 0;
-        int prev = -1;
-        // 각 구간의 합을 누적합을 통해 계산
-        for (int p : parts) {
-            int sum = prefix[p + 1] - prefix[prev + 1];
-            currentMax = max(currentMax, sum);
-            // 가지치기: 이미 현재 구간 합의 최대가 best 이상이면 더 계산할 필요 없음
-            if (currentMax >= best) return;
-            prev = p;
-        }
-        int sum = prefix[n] - prefix[prev + 1]; // 마지막 구간
-        currentMax = max(currentMax, sum);
-        best = min(best, currentMax);
-        return;
-    }
-
-    for (int i = start; i < n; i++) {
-        parts.push_back(i);
-        backtrack(parts, i + 1);
-        parts.pop_back();
-    }
-}
-
 int main() {
+    int n, m;
     cin >> n >> m;
-    arr.resize(n);
+    vector<int> arr(n);
     for (int i = 0; i < n; i++) {
         cin >> arr[i];
     }
 
-    // 누적합 배열 계산
-    computePrefix();
+    // m 구간이면 m-1개의 분할점(칸막이)을 선택
+    int k = m - 1;
 
-    vector<int> parts;
-    backtrack(parts, 0);
+    // 누적합(prefix sum) 계산: prefix[i+1] = sum(arr[0]..arr[i])
+    vector<long long> prefix(n + 1, 0);
+    for (int i = 0; i < n; i++) {
+        prefix[i + 1] = prefix[i] + arr[i];
+    }
+
+    // 초기 조합: 첫 k개의 인덱스
+    vector<int> comb(k);
+    for (int i = 0; i < k; i++) {
+        comb[i] = i;
+    }
+
+    int best = 1e9;
+    while (true) {
+        int currentMax = 0;
+        int prev = -1;
+        // 분할점에 따른 각 구간의 합을 계산 (누적합을 이용)
+        for (int idx = 0; idx < k; idx++) {
+            int pos = comb[idx];
+            int sum = prefix[pos + 1] - prefix[prev + 1];
+            currentMax = max(currentMax, sum);
+            if (currentMax >= best) break;  // 가지치기
+            prev = pos;
+        }
+        int sum = prefix[n] - prefix[prev + 1]; // 마지막 구간
+        currentMax = max(currentMax, sum);
+        best = min(best, currentMax);
+
+        // 다음 조합 생성 (사전순 순회)
+        int i;
+        for (i = k - 1; i >= 0; i--) {
+            if (comb[i] < n - k + i) {
+                comb[i]++;
+                for (int j = i + 1; j < k; j++) {
+                    comb[j] = comb[j - 1] + 1;
+                }
+                break;
+            }
+        }
+        if (i < 0) break;
+    }
 
     cout << best;
     return 0;
