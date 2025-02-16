@@ -17,15 +17,23 @@ int main() {
     vector<int> list(N); // 오리지널 수열
     for (int i = 1; i <= N; i++) { // i : 0번째 인덱스 값
         list[0] = i;
+        bool flag = false;
         for (int j = 1; j < N; j++) {
             list[j] = v[j - 1] - list[j - 1];
+
+            if (list[j] <= 0) {
+                flag = true;
+                break;
+            }
+        }
+
+        if (flag) {
+            continue;
         }
 
         unordered_set<int> s(list.begin(), list.end());
         if (list.size() == s.size()) { // 중복이 없다면
-            if (find(list.begin(), list.end(), 0) == list.end()) { // list수열내에 0이 없다면
-                break;
-            }
+            break;
         }
     }
 
