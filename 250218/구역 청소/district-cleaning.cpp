@@ -7,11 +7,11 @@ int main() {
     int a, b, c, d;
     cin >> a >> b >> c >> d;
 
-    for (int i = a; i <= b; i++) {
+    for (int i = a; i < b; i++) {
         arr[i]++;
     }
 
-    for (int i = c; i <= d; i++) {
+    for (int i = c; i < d; i++) {
         arr[i]++;
     }
 
@@ -22,5 +22,5 @@ int main() {
         }
     }
 
-    cout << count - 1;
+    cout << count;
 }
