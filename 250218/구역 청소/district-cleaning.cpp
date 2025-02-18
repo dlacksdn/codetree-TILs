@@ -1,26 +1,15 @@
 #include <iostream>
+#include <algorithm>
 using namespace std;
 
 int main() {
-    int arr[101] = { 0, };
-
     int a, b, c, d;
     cin >> a >> b >> c >> d;
 
-    for (int i = a; i < b; i++) {
-        arr[i]++;
+    if (b < c || d < a) { // 안 겹침
+        cout << (b - a) + (d - c);
     }
-
-    for (int i = c; i < d; i++) {
-        arr[i]++;
+    else {
+        cout << max(b, d) - min(a, c);
     }
-
-    int count = 0;
-    for (int i = 0; i <= 100; i++) {
-        if (arr[i] != 0) { // 청소 구역이다
-            count++;
-        }
-    }
-
-    cout << count;
 }
