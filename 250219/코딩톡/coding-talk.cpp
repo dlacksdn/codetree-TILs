@@ -23,10 +23,16 @@ int main() {
     }
 
     for (int i = p; i <= M; i++) { // i : message_info를 순회하는 인덱스
-        auto it = find(result.begin(), result.end(), message_info[i].first);
 
+        // 메세지가 보내진 시간 or 그 이후에 메세지를 보낸 적이 있다 -> 봤다
+        auto it = find(result.begin(), result.end(), message_info[i].first);
         if (it != result.end()) { // result에 찾는 원소가 존재한다
             result.erase(it);
+        }
+
+        // 메세지가 보내진 시간 or 그 이후에 u = 0인 때가 있다 -> 다 봤다
+        if (message_info[i].second == 0) {
+            return 0;
         }
     }
 
