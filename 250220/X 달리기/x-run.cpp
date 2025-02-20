@@ -9,7 +9,7 @@ int main() {
     int count = 0;
     int result = 0;
     for (int i = 1; i <= N; i++) { // i : 현재 속도
-        sum += i;
+        sum += i; 
         count++;
 
         int decision = N - (sum * 2);
@@ -33,3 +33,42 @@ int main() {
 
     cout << result;
 }
+
+/*
+(1 2 3) 4 (1 2 3)처럼
+반드시 같은 수열 2개가 존재함
+위 코드에서 sum은 6
+
+decision = N - (sum * 2)
+
+경우의 수
+(1 2 3) (3 2 1)
+decision = 0
+
+(1 2 3) (3 2 1) 1
+decision = 1
+
+(1 2 3) 3 (3 2 1)
+decision = 현재 속도
+
+(1 2 3) 4 (3 2 1)
+decision = 현재 속도 + 1
+
+(1 2) 3 (2 1) 1
+decision = 현재 속도 + 2
+
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
+항상
+decision == 0
+-> count * 2
+
+다음 속도가 sum에 더해진다고 했을 때
+(sum * 2) >= N이면 판정
+
+decision > 현재 속도 + 1
+-> (count * 2) + 2
+
+decision <= 현재 속도 + 1
+-> (count * 2) + 1
+*/
