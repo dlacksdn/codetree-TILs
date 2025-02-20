@@ -32,10 +32,14 @@ int main() {
         //    }
 
         //    // 메세지가 보내진 시간 or 그 이후에 u = 0인 때가 있다 -> 다 봤다
-        //    if (message_info[i].second == 0) {
+        //    if (i == p && message_info[i].second == 0) {
         //        return 0;
         //    }
         //}
+
+        if (i == p && message_info[i].second == 0) {
+            return 0;
+        }
 
         if (message_info[i].second >= message_info[p].second) {
             // 보낸 사람이 바뀌었는데 안 본 사람의 수가 같다 -> 톡방에 들어오면 전의 대화도 봐지기 때문에 u가 같은 메세지 정보의 사람끼리는 무조건 같은 u의 메세지를 봤다  
