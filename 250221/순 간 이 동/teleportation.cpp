@@ -14,7 +14,7 @@ int main() {
 	int tp_s = min(x, y);
 	int tp_e = max(x, y);
 
-	int tp = (start - tp_s) + (end - tp_e);
+	int tp = abs(start - tp_s) + abs(end - tp_e);
 
 	cout << min(direct, tp);
 }
