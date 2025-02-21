@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 using namespace std;
 
 int main() {
@@ -8,6 +9,8 @@ int main() {
 	for (int i = 0; i < 3; i++) {
 		cin >> v[i];
 	}
+
+	sort(v.begin(), v.end());
 
 	if (v[0] + 1 == v[1] && v[2] - 1 == v[1]) { // 이미 완벽
 		cout << 0;
