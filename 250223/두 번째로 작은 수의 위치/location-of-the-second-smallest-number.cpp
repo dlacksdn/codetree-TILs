@@ -1,8 +1,6 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include <unordered_set>
-#include <iterator>
 using namespace std;
 
 int main() {
@@ -15,32 +13,28 @@ int main() {
 		cin >> v[i];
 	}
 
-	vector<int> target = v;
+	vector<int> test = v;
 
-	sort(target.begin(), target.end());
+	sort(test.begin(), test.end());
+	int first_min = test[0];
 
-	unordered_set<int> s(target.begin(), target.end());
+	int second_min = 0;
+	for (int i = 1; i < N; i++) {
+		if (first_min != test[i]) {
+			if (i == N - 1 || test[i] != test[i + 1]) {
+				second_min = test[i];
+			}
+			break;
+		}
+	}
 
-	// set으로 바꿔봤는데 size가 1 -> -1
-
-	if (s.size() == 1) {
+	if (second_min == 0) {
 		cout << -1;
 	}
 	else {
-		int second_min = *next(s.begin(), 1);
-		auto it = find(target.begin(), target.end(), second_min); // 두 번째 최솟값이 처음 나오는 반복자
+		auto it = find(v.begin(), v.end(), second_min);
+		int index = distance(v.begin(), it);
 
-		int result = distance(v.begin(), find(v.begin(), v.end(), second_min));
-		int index = distance(target.begin(), it); // 두 번째 최솟값이 처음 나오는 인덱스
-
-		if (it == target.end() - 1) { // 나오는게 마지막 인덱스 -> 하나라서 위치 출력
-			cout << result + 1;
-		}
-		else if (*(it + 1) == *it) { // 여러 개 있음 -> -1
-			cout << -1;
-		}
-		else {
-			cout << result + 1;
-		}
+		cout << index + 1;
 	}
 }
