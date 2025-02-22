@@ -3,6 +3,24 @@
 #include <algorithm>
 using namespace std;
 
+int process(string test) {
+	int min_num = 1000; // 1끼리 가장 작은 거리
+	for (int i = 0; i < test.size(); i++) {
+		if (test[i] == '0') continue;
+
+		for (int j = i + 1; j < test.size(); j++) {
+			if (test[j] == '1') {
+				if (j - i < min_num) {
+					min_num = j - i;
+				}
+				break;
+			}
+		}
+	}
+
+	return min_num;
+}
+
 int main() {
 	int N;
 	cin >> N;
@@ -10,31 +28,45 @@ int main() {
 	string str;
 	cin >> str;
 
-	vector<int> index;
-
+	int max_num = 0; // 가장 큰 1끼리의 거리
+	int start, end;
 	for (int i = 0; i < N; i++) {
-		if (str[i] == '1') {
-			index.push_back(i);
+		if (str[i] == '0') continue;
+		
+		for (int j = i + 1; j < N; j++) {
+			if (str[j] == '1') {
+				if (j - i > max_num) {
+					max_num = j - i;
+					start = i;
+					end = j;
+				}
+
+				break;
+			}
 		}
 	}
 
-	vector<int> test;
-	int result = 0;
-	for (int i = 0; i < N; i++) {
-		if (str[i] == '1') continue; // 이미 사람이 있으니 넘어가기
+	int target_index = (start + end) / 2;
 
-		test = index;
-		test.push_back(i);
-		sort(test.begin(), test.end());
+	string test = str;
+	test[target_index] = '1';
 
-		int min_num = 1000;
-		for (int i = 0; i < test.size() - 1; i++) {
-			if (test[i + 1] - test[i] < min_num) {
-				min_num = test[i + 1] - test[i];
-			}
-		}
+	int result = process(test);
+	
+	if (str[0] == '0') {
+		test = str;
+		test[0] = '1';
 
-		result = max(result, min_num);
+		int num = process(test);
+		result = max(result, num);
+	}
+	
+	if (str[N - 1] == '0') {
+		test = str;
+		test[N - 1] = '1';
+
+		int num = process(test);
+		result = max(result, num);
 	}
 
 	cout << result;
