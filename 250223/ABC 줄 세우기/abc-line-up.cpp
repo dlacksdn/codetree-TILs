@@ -14,13 +14,19 @@ int main() {
 	}
 
 	int count = 0;
-	for (int i = N - 1; i >= 1; i--) {
-		for (int j = 0; j < i; j++) {
-			if (v[j] > v[j + 1]) {
-				swap(v[j], v[j + 1]);
-				count++;
-			}
+	for (int i = 0; i < N - 1; i++) {
+		int num1 = v[i];
+		int num2 = v[i + 1];
+
+		if (num1 > num2) {
+			swap(v[i], v[i + 1]);
+			i = -1;
+			count++;
 		}
+	}
+
+	for (char c : v) {
+		cout << c << " ";
 	}
 
 	cout << count;
