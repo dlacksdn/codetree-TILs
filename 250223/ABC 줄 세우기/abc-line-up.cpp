@@ -25,9 +25,5 @@ int main() {
 		}
 	}
 
-	for (char c : v) {
-		cout << c << " ";
-	}
-
 	cout << count;
 }
