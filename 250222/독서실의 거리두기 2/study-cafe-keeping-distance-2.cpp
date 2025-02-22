@@ -28,8 +28,10 @@ int main() {
 	string str;
 	cin >> str;
 
+	int result = 0;
+
 	int max_num = 0; // 가장 큰 1끼리의 거리
-	int start, end;
+	int start = 0, end = 0;
 	for (int i = 0; i < N; i++) {
 		if (str[i] == '0') continue;
 		
@@ -46,12 +48,13 @@ int main() {
 		}
 	}
 
-	int target_index = (start + end) / 2;
-
 	string test = str;
-	test[target_index] = '1';
 
-	int result = process(test);
+	if (end != 0) {
+		int target_index = (start + end) / 2;
+		test[target_index] = '1';
+		result = process(test);
+	}
 	
 	if (str[0] == '0') {
 		test = str;
