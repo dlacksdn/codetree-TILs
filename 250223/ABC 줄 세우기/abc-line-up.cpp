@@ -14,11 +14,12 @@ int main() {
 	}
 
 	int count = 0;
-	for (int i = 0; i < N - 1; i++) {
-		if (v[i] > v[i + 1]) {
-			swap(v[i], v[i + 1]);
-			i = 0;
-			count++;
+	for (int i = N - 1; i >= 1; i--) {
+		for (int j = 0; j < i; j++) {
+			if (v[j] > v[j + 1]) {
+				swap(v[j], v[j + 1]);
+				count++;
+			}
 		}
 	}
 
