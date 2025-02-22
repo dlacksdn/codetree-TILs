@@ -10,7 +10,6 @@ int process(int gawi, int bawi, int bo, int left, int right) {
     }
     else if (bawi == left) {
         left_num = 1;
-
     }
     else {
         left_num = 2;
@@ -27,7 +26,7 @@ int process(int gawi, int bawi, int bo, int left, int right) {
         right_num = 2;
     }
 
-    return (right - left + 3) % 3;
+    return (right_num - left_num + 3) % 3;
 }
 
 int main() {
