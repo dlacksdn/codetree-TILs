@@ -1,67 +1,50 @@
 #include <iostream>
-#include <vector>
 #include <algorithm>
-#include <climits>
+
+#define MAX_N 100000
+
 using namespace std;
 
+// 변수 선언
+int n;
+int arr[MAX_N + 1];
+
+int ans;
+int negative, zero, positive;
+
 int main() {
-    int N;
-    cin >> N;
+    // 입력:
+    cin >> n;
+    for(int i = 1; i <= n; i++)
+        cin >> arr[i];
 
-    vector<int> plus, minus;
-    bool is_zero = false;
-
-    for (int i = 0; i < N; i++) {
-        int num;
-        cin >> num;
-
-        if (num > 0) {
-            plus.push_back(num);
-        }
-        else if (num < 0) {
-            minus.push_back(num);
-        }
-        else {
-            is_zero = true;
-        }
+    sort(arr + 1, arr + n + 1);
+    for(int i = 1; i <= n; i++) {
+        if(arr[i] < 0) negative++;
+        if(arr[i] == 0) zero++;
+        if(arr[i] > 0) positive++;
     }
 
-    sort(plus.begin(), plus.end());
-    sort(minus.begin(), minus.end());
-
-    int p_index = plus.size() - 1;
-    int m_index = minus.size() - 1;
-
-    int p_size = plus.size();
-    int m_size = minus.size();
-
-    int p3 = INT_MIN;
-    int p1m2 = INT_MIN;
-    int zero = INT_MIN;
-    int p2m1 = INT_MIN;
-    int m3 = INT_MIN;
-
-    if (p_size >= 3) {
-        p3 = plus[p_index] * plus[p_index - 1] * plus[p_index - 2];
+    // 곱 중 양수가 존재할 때
+    // 양수 3개의 곱이나, 양수 1개와 음수 2개의 곱이 만들어져야 가능합니다.
+    if(positive >= 3 || (positive >= 1 && negative >= 2)) {
+        // 양수가 3개 이상이라면, 그 중 가장 큰 3개의 수를 곱하는 것이 최선입니다.
+        if(positive >= 3)
+            ans = max(ans, arr[n] * arr[n - 1] * arr[n - 2]);
+        // 음수 2개와 양수 1개를 곱할 때에는, 음수 2개는 절댓값이 가장 큰 값을, (즉, 가장 작은 두 값)
+        // 양수 1개는 가장 큰 값을 골라 곱하는 것이 최선입니다.
+        if(positive >= 1 && negative >= 2)
+            ans = max(ans, arr[n] * arr[2] * arr[1]);
     }
-
-    if (p_size >= 1 && m_size >= 2) {
-        p1m2 = minus[0] * minus[1] * plus[p_index];
-    }
-
-    if (is_zero) {
-        zero = 0;
-    }
-
-    if (p_size >= 2 && m_size >= 1) {
-        p2m1 = minus[m_index] * plus[0] * plus[1];
-    }
-
-    if (m_size >= 3) {
-        m3 = minus[m_index] * minus[m_index - 1] * minus[m_index - 2];
-    }
-
-    int result = max({ p3, p1m2, zero, p2m1, m3 });
-
-    cout << result;
+    // 곱 중 0이 존재할 때
+    else if(zero >= 1)
+        ans = 0;
+    // 곱 중 음수만 존재할 때
+    // 배열에 -밖에 없거나 (negative = 1, zero = 0, positive = 2)인 경우
+    // 이 경우 가장 절댓값이 작은 값 3개를 고르는 것이 최선입니다.
+    else
+        ans = arr[n] * arr[n - 1] * arr[n - 2];
+    
+    cout << ans;
+    return 0;
 }
