@@ -29,14 +29,10 @@ int main() {
     }
 
     int result = 0;
-    //if (((L.first == R.first && R.first == B.first)) && ((L.second < R.second && R.second < B.second) || (B.second < R.second && R.second < L.second))) { // L R B가 한 줄에 있음
-    //    result = abs(L.first - B.first) + abs(L.second - B.second) + 1;
-    //}
-
-    if (((L.first == R.first && R.first == B.first)) && R.second > min(L.second, B.second) && R.second < max(L.second, B.second)) { // L R B가 한 줄에 있음
+    if (((L.first == R.first && R.first == B.first)) && (R.second > min(L.second, B.second)) && R.second < max(L.second, B.second)) { // L R B가 한 줄에 있음
         result = abs(L.first - B.first) + abs(L.second - B.second) + 1;
     }
-    else if (((L.second == R.second && R.second == B.second)) && ((L.first < R.first && R.first < B.first) || (B.first < R.first && R.first < L.first))) {
+    else if (((L.second == R.second && R.second == B.second)) && (R.first > min(L.first, B.first)) && R.first < max(L.first, B.first)) {
         result = abs(L.first - B.first) + abs(L.second - B.second) + 1;
     }
     else {
