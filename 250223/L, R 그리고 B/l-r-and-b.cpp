@@ -28,15 +28,24 @@ int main() {
         }
     }
 
-    int result = 0;
-    if (((L.first == R.first && R.first == B.first)) && (R.second > min(L.second, B.second)) && R.second < max(L.second, B.second)) { // L R B가 한 줄에 있음
-        result = abs(L.first - B.first) + abs(L.second - B.second) + 1;
+    int dist = abs(L.first - B.first) + abs(L.second - B.second);
+    int result = dist - 1;
+
+    if (L.first == R.first && R.first == B.first) { // L R B가 같은 가로줄에 있음
+        int leftY = min(L.second, B.second);
+        int rightY = max(L.second, B.second);
+
+        if (leftY < R.second && R.second < rightY) { // R이 L, B 사이에 있음
+            result = dist + 1;
+        }
     }
-    else if (((L.second == R.second && R.second == B.second)) && (R.first > min(L.first, B.first)) && R.first < max(L.first, B.first)) {
-        result = abs(L.first - B.first) + abs(L.second - B.second) + 1;
-    }
-    else {
-        result = abs(L.first - B.first) + abs(L.second - B.second) - 1;
+    else if (L.second == R.second && R.second == B.second) { // L R B가 같은 세로줄에 있음
+        int topX = min(L.first, B.first);
+        int bottomX = max(L.first, B.first);
+
+        if (topX < R.first && R.first < bottomX) { // R이 L, B 사이에 있음
+            result = dist + 1;
+        }
     }
 
     cout << result;
