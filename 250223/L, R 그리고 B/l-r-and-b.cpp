@@ -29,7 +29,7 @@ int main() {
     }
 
     int result = 0;
-    if ((L.first == R.first == B.first)  || (L.second == R.second == B.second)) { // L R B가 한 줄에 있음
+    if ((L.first == R.first && R.first == B.first)  || (L.second == R.second && R.second == B.second)) { // L R B가 한 줄에 있음
         result = abs(L.first - B.first) + abs(L.second - B.second) + 1;
     }
     else {
