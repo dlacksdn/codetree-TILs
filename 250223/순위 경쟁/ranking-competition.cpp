@@ -6,26 +6,24 @@ int process(int A, int B, int C) {
     if (A == B && B == C) { // 셋 다 명예의 전당
         return 6;
     }
-    else if (B == C) {
+    else if (B == C && B > A) { // B C
         return 5;
     }
-    else if (A == C) {
+    else if (A == C && A > B) { // A C
         return 4;
     }
-    else if (A == B) {
+    else if (A == B && A > C) { // A B
         return 3;
     }
-    else if (C > A && C > B) {
+    else if (C > A && C > B) { // C
         return 2;
     }
-    else if (B > A && B > C) {
+    else if (B > A && B > C) { // B
         return 1;
     }
-    else {
+    else { // A
         return 0;
     }
-    
-   
 }
 
 int main() {
@@ -42,6 +40,7 @@ int main() {
     int A = 0, B = 0, C = 0;
 
     int count = 0;
+
     for (int i = 0; i < N; i++) {
         if (v[i].first == 'A')
             A += v[i].second;
