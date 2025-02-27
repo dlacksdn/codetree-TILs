@@ -1,0 +1,27 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <climits>
+using namespace std;
+
+int main() {
+    int N;
+    cin >> N;
+
+    vector<int> v(2 * N);
+
+    for (int i = 0; i < 2 * N; i++) {
+        cin >> v[i];
+    }
+
+    sort(v.begin(), v.end());
+
+    int result = INT_MAX;
+    for (int i = 0; i < N; i++) {
+        int num = abs(v[i] - v[i + N]);
+
+        result = min(result, num);
+    }
+
+    cout << result;
+}
