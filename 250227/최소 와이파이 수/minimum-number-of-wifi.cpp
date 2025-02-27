@@ -1,27 +1,29 @@
 #include <iostream>
-#include <vector>
-#include <algorithm>
+
+#define MAX_N 100
+
 using namespace std;
 
+int n, m;
+int arr[MAX_N];
+
 int main() {
-    int n, m;
+    // 입력:
     cin >> n >> m;
-
-    vector<int> v(n);
-    vector<bool> is_in(n, false); // false면 개통 안 됨
-
-    for (int i = 0; i < n; i++) {
-        cin >> v[i];
-    }
-
-    int result = 0;
-
-    for (int i = 0; i < n; i++) {
-        if (v[i] == 1) {
-            result++;
-            i += 2 * m + 1;
+    for(int i = 0; i < n; i++)
+        cin >> arr[i];
+    
+    // 사람이 살고 있는 곳이 나오면
+    // 와이파이를 해당 위치로부터 오른쪽으로 m만큼 떨어진 곳에 놓은 뒤,
+    // 2m만큼 떨어진 곳에서 시작하여 다시 탐색을 진행합니다.
+    int cnt = 0;
+    for(int i = 0; i < n; i++) {
+        if(arr[i] == 1) {
+            cnt++;
+            i += 2 * m;
         }
     }
-
-    cout << result;
+    
+    cout << cnt;
+    return 0;
 }
