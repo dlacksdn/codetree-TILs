@@ -20,6 +20,13 @@ int main() {
 
         for(int i = 0; i < n; i++) {
             str = to_string(arr[i]);
+
+            int size = str.size();
+            for(int i = 0; i < 6 - size; i++) {
+                str.insert(0, "0");
+            }
+
+
             c = str[pos];
             int digit = c - '0';
 
