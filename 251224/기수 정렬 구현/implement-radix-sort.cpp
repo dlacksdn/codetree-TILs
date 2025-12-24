@@ -15,8 +15,6 @@ int main() {
     int p = 1;
     for(int pos = 5; pos >= 0; pos--) {
         vector<vector<int>> arr_new(10);
-        string str;
-        char c;
 
         for(int i = 0; i < n; i++) {
             int digit = (arr[i] / p) % 10;
