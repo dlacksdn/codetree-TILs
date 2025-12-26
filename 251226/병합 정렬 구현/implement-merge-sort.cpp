@@ -4,13 +4,13 @@
 using namespace std;
 
 int n;
-
+vector<int> merged_arr;
 
 void merge(vector<int>& arr, int low, int mid, int high) {
     int i = low;
     int j = mid + 1;
     int k = low;
-    vector<int> merged_arr(n);
+    
 
     while(i <= mid && j <= high) {
         if(arr[i] < arr[j]) {
@@ -60,6 +60,7 @@ int main() {
     int i = 0;
     int j = n - 1;
     
+    merged_arr.resize(n);
 
     merge_sort(arr, i, j);
 
