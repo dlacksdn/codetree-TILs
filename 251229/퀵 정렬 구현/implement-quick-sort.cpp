@@ -7,9 +7,37 @@ void swap(int arr[], int i, int j) {
     arr[j] = temp;
 }
 
+int select_pivot(int arr[], int low, int high) {
+    int first = arr[low];
+    int last = arr[high];
+
+    int index = (low + high) / 2;
+    int middle = arr[index];
+
+    int temp = 0;
+
+    if((first < middle && last < first) || first < last && middle < first) {
+        temp = arr[low];
+        arr[low] = arr[high];
+        arr[high] = temp;
+
+        return first;
+    }
+
+    if((last < middle && first < last) || last < first && middle < last) {
+        return last;
+    }
+
+    temp = arr[index];
+    arr[index] = arr[high];
+    arr[high] = temp;
+
+    return middle;
+}
+
 int partition(int arr[], int low, int high) {
     int i = low - 1;
-    int pivot = arr[high];
+    int pivot = select_pivot(arr, low, high);
 
     for(int j = low; j < high; j++) {
         if(arr[j] < pivot) {
