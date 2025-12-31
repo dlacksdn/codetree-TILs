@@ -26,12 +26,13 @@ void heapify(int arr[], int n, int i) {
     }
 }
 
-void heap_sort(int arr[], int n) {
-    for (int i = n/2; i >= 1; i--) {
+void heapsort(int arr[], int n) {
+    // maxheap 만들기
+    for(int i = n / 2; i >= 1; i--) {
         heapify(arr, n, i);
     }
 
-    for (int i = n; i > 1; i--) {
+    for(int i = n; i > 1; i--) {
         swap(arr, 1, i);
         heapify(arr, i - 1, 1);
     }
@@ -48,7 +49,7 @@ int main() {
         cin >> arr[i];
     }
 
-    heap_sort(arr, n);
+    heapsort(arr, n);
 
     for(int i = 1; i <= n; i++) {
         cout << arr[i] << " ";
