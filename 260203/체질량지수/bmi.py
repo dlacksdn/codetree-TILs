@@ -1,6 +1,6 @@
 h, w = map(int, input().split())
 
-b = (10000 * w) / (h * h)
+b = int((10000 * w) / (h * h))
 
 print(b)
 
