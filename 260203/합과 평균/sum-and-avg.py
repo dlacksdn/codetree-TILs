@@ -1,4 +1,6 @@
-a, b = map(int, input().split())
-sum = a + b
-avg = sum / 2
+list = input().split()
+list[0] = int(list[0])
+list[1] = int(list[1])
+sum = sum(list)
+avg = sum / len(list)
 print(sum, avg)
